@@ -10,8 +10,12 @@ import Foundation
 import Alamofire
 
 class Pokemon {
+    
     private var _name: String!
     private var _pokedexId: Int!
+    
+    private var _pokemonUrl: String!
+    
     private var _description: String!
     private var _type: String!
     private var _defense: String!
@@ -21,7 +25,7 @@ class Pokemon {
     private var _nextEvolutionTxt: String!
     private var _nextEvolutiionId: String!
     private var _nextEvolutionLvl: String!
-    private var _pokemonUrl: String!
+    
     
     
     // name is guaranteed to have a value because we have initialized it
@@ -117,10 +121,9 @@ class Pokemon {
         
         // async: need to wait for this to download
         Alamofire.request(.GET, url).responseJSON { (response: Response<AnyObject, NSError>) -> Void in
-            // print("===========================response")
-            // print(response)
-            // print(response.request)
-            // print(response.result.value)
+            
+             print("pokemon=====")
+             print(response.result.value)
             
             if let dict = response.result.value as? Dictionary<String, AnyObject> {
                 if let weight = dict["weight"] as? String {
@@ -134,10 +137,12 @@ class Pokemon {
                 if let defense = dict["defense"] as? Int {
                     self._defense = "\(defense)"
                 }
+                // print("==weight==")
                 // print(self._weight)
                 // print(self._height)
                 // print(self._attack)
                 // print(self._defense)
+                // print("==defense==")
                 
                 if let types = dict["types"] as? [Dictionary<String, String>] where types.count > 0 {
                     // print(types.debugDescription)
@@ -165,17 +170,19 @@ class Pokemon {
                 
                 print(self._type)
                 
-                // get the first description
+                // DESCRIPTIONS
+                // get the first description from descriptions
                 if let descArr = dict["descriptions"] as? [Dictionary<String,String>] where descArr.count > 0 {
                     if let url = descArr[0]["resource_uri"] {
                         let nsurl = NSURL(string: "\(URL_BASE)\(url)")!
                         Alamofire.request(.GET, nsurl).responseJSON(completionHandler: { (response: Response<AnyObject, NSError>) -> Void in
+                            // print("description=====")
+                            // print(response.result.value)
+                            
                             // get the description data
                             if let descDict = response.result.value as? Dictionary<String,AnyObject> {
                                 if let description = descDict["description"] as? String {
                                     self._description = description
-                                    //  print("===========================response")
-                                    //  print(self._description)
                                 }
                             }
                             
@@ -189,6 +196,7 @@ class Pokemon {
                     self._description = ""
                 }
                 
+                // EVOLUTIONS
                 // 1. check there is at least one evolution
                 // parse evolutions
                 if let evolutions = dict["evolutions"] as? [Dictionary<String, AnyObject>] where evolutions.count > 0 {
@@ -206,12 +214,17 @@ class Pokemon {
                                 self._nextEvolutiionId = num
                                 self._nextEvolutionTxt = to
                                 
-                                if let lvl = evolutions[0]["level"] as? Int {
-                                    self._nextEvolutionLvl = "\(lvl)"
+                                // some evolution pokemon does not have a level in the api
+                                if evolutions[0]["level"] != nil {
+                                    if let lvl = evolutions[0]["level"] as? Int {
+                                        self._nextEvolutionLvl = "\(lvl)"
+                                    }
+                                } else {
+                                    self._nextEvolutionLvl = ""
                                 }
-                                print(self._nextEvolutiionId)
-                                print(self._nextEvolutionTxt)
-                                print(self._nextEvolutionLvl)
+                                // print(self._nextEvolutiionId)
+                                // print(self._nextEvolutionTxt)
+                                // print(self._nextEvolutionLvl)
                                 
                             }
                         }
@@ -219,8 +232,15 @@ class Pokemon {
                     }
                 }
                 
-            }
-        }
+                // MOVES
+                if let moves = dict["moves"] as? [Dictionary<String, AnyObject>] where moves.count > 0 {
+                    
+                }
+                
+            
+            
+            } // end pokemon result
+        } // end pokemon request
         
     }
 }

@@ -24,11 +24,24 @@ class PokemonDetailVC: UIViewController {
     @IBOutlet weak var nextEvoImg: UIImageView!
     @IBOutlet weak var evoLbl: UILabel!
     
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
         
+        let font: UIFont = UIFont(name: "Lato-Regular", size: 12.0)!
+        let attr = [
+            NSFontAttributeName: font
+        ]
+        
+        segmentedControl.setTitleTextAttributes(attr, forState: .Normal)
+        
+//        if segmentedControl.selectedSegmentIndex == 0 {
+        
+            
+            
+            
         nameLbl.text = pokemon.name.capitalizedString
         let img = UIImage(named: "\(pokemon.pokedexId)")
         mainImg.image = img
@@ -41,7 +54,21 @@ class PokemonDetailVC: UIViewController {
             self.updateUI()
             
         }
+      
         
+        
+        
+    }
+    
+    @IBAction func segmentSelected(sender: AnyObject) {
+        if sender.selectedSegmentIndex == 0 {
+            print("0!!!!")
+            
+        } else if sender.selectedSegmentIndex == 1 {
+            print("1!!!!")
+            mainImg.hidden = true
+            descriptionLab.hidden = true
+        }
     }
     
     func updateUI() {
@@ -68,16 +95,13 @@ class PokemonDetailVC: UIViewController {
             if pokemon.nextEvolutionLvl != "" {
                 str += " - LVL \(pokemon.nextEvolutionLvl)"
             }
+            evoLbl.text = str
         }
     }
     
     @IBAction func backBtnPressed(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     
 }

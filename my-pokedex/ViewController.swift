@@ -30,6 +30,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         searchBar.returnKeyType = UIReturnKeyType.Done
         searchBar.enablesReturnKeyAutomatically = false
         initAudio()
+        
+        // initialize pokemons
         parsePokemonCSV()
     }
     
@@ -63,6 +65,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 let pokeId = Int(row["id"]!)!
                 // name
                 let name = row["identifier"]!
+                // initialize pokemons
                 let poke = Pokemon(name: name, pokedexId: pokeId)
                 pokemon.append(poke)
                 

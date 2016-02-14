@@ -21,6 +21,7 @@
 		EB9283921C6E1C4D006385B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB9283911C6E1C4D006385B9 /* Assets.xcassets */; };
 		EB9283951C6E1C4D006385B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9283931C6E1C4D006385B9 /* LaunchScreen.storyboard */; };
 		EB92839D1C6E1E8D006385B9 /* pokemon.csv in Resources */ = {isa = PBXBuildFile; fileRef = EB92839C1C6E1E8D006385B9 /* pokemon.csv */; };
+		EBA9E95F1C706F3600A3DB3C /* lato-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBA9E95E1C706F3600A3DB3C /* lato-regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		EB9283941C6E1C4D006385B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB9283961C6E1C4D006385B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB92839C1C6E1E8D006385B9 /* pokemon.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pokemon.csv; sourceTree = "<group>"; };
+		EBA9E95E1C706F3600A3DB3C /* lato-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lato-regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,9 @@
 			isa = PBXGroup;
 			children = (
 				EB92839C1C6E1E8D006385B9 /* pokemon.csv */,
+				EB771B041C6EF4C800B0EBEF /* music.mp3 */,
+				EB771B021C6EF29000B0EBEF /* PokemonSolid.ttf */,
+				EBA9E95E1C706F3600A3DB3C /* lato-regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -144,8 +149,6 @@
 				EB771B001C6EED9000B0EBEF /* Util */,
 				EB771B011C6EEDA700B0EBEF /* Resources */,
 				EB92838A1C6E1C4D006385B9 /* AppDelegate.swift */,
-				EB771B041C6EF4C800B0EBEF /* music.mp3 */,
-				EB771B021C6EF29000B0EBEF /* PokemonSolid.ttf */,
 				EB9283911C6E1C4D006385B9 /* Assets.xcassets */,
 				EB9283961C6E1C4D006385B9 /* Info.plist */,
 			);
@@ -219,6 +222,7 @@
 				EB92839D1C6E1E8D006385B9 /* pokemon.csv in Resources */,
 				EB771B031C6EF29000B0EBEF /* PokemonSolid.ttf in Resources */,
 				EB9283901C6E1C4D006385B9 /* Main.storyboard in Resources */,
+				EBA9E95F1C706F3600A3DB3C /* lato-regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
