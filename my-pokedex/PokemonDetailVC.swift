@@ -25,10 +25,14 @@ class PokemonDetailVC: UIViewController {
     @IBOutlet weak var evoLbl: UILabel!
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var bioContainerView: UIView!
+    @IBOutlet weak var movesContainerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bioContainerView.hidden = false
+        movesContainerView.hidden = true
         
         let font: UIFont = UIFont(name: "Lato-Regular", size: 12.0)!
         let attr = [
@@ -37,11 +41,6 @@ class PokemonDetailVC: UIViewController {
         
         segmentedControl.setTitleTextAttributes(attr, forState: .Normal)
         
-//        if segmentedControl.selectedSegmentIndex == 0 {
-        
-            
-            
-            
         nameLbl.text = pokemon.name.capitalizedString
         let img = UIImage(named: "\(pokemon.pokedexId)")
         mainImg.image = img
@@ -53,21 +52,23 @@ class PokemonDetailVC: UIViewController {
             // prevent views from crashing before they are downloaded
             self.updateUI()
             
+            
+            
         }
-      
-        
-        
-        
     }
     
+    // MARK: UISegmentedController
+    // all the views load at the same time
     @IBAction func segmentSelected(sender: AnyObject) {
         if sender.selectedSegmentIndex == 0 {
-            print("0!!!!")
+            self.bioContainerView.hidden = false
+            self.movesContainerView.hidden = true
+            
             
         } else if sender.selectedSegmentIndex == 1 {
-            print("1!!!!")
-            mainImg.hidden = true
-            descriptionLab.hidden = true
+            self.bioContainerView.hidden = true
+            self.movesContainerView.hidden = false
+
         }
     }
     
@@ -102,6 +103,16 @@ class PokemonDetailVC: UIViewController {
     @IBAction func backBtnPressed(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowBio" {
+            let destinationVC = segue.destinationViewController as! BioContainerViewController
+            destinationVC.passedData = pokemon
+        } else if segue.identifier == "ShowMoves" {
+            let destinationVC = segue.destinationViewController as! MovesContainerViewController
+            destinationVC.passedData = pokemon
+        }
+    }
+    
     
 }

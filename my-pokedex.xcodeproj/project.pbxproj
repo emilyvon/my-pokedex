@@ -21,6 +21,8 @@
 		EB9283921C6E1C4D006385B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB9283911C6E1C4D006385B9 /* Assets.xcassets */; };
 		EB9283951C6E1C4D006385B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9283931C6E1C4D006385B9 /* LaunchScreen.storyboard */; };
 		EB92839D1C6E1E8D006385B9 /* pokemon.csv in Resources */ = {isa = PBXBuildFile; fileRef = EB92839C1C6E1E8D006385B9 /* pokemon.csv */; };
+		EB92A8B21C71ACEA00691E14 /* BioContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB92A8B11C71ACEA00691E14 /* BioContainerViewController.swift */; };
+		EB92A8B41C71ACF500691E14 /* MovesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB92A8B31C71ACF500691E14 /* MovesContainerViewController.swift */; };
 		EBA9E95F1C706F3600A3DB3C /* lato-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBA9E95E1C706F3600A3DB3C /* lato-regular.ttf */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +45,8 @@
 		EB9283941C6E1C4D006385B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB9283961C6E1C4D006385B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB92839C1C6E1E8D006385B9 /* pokemon.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pokemon.csv; sourceTree = "<group>"; };
+		EB92A8B11C71ACEA00691E14 /* BioContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BioContainerViewController.swift; sourceTree = "<group>"; };
+		EB92A8B31C71ACF500691E14 /* MovesContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovesContainerViewController.swift; sourceTree = "<group>"; };
 		EBA9E95E1C706F3600A3DB3C /* lato-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lato-regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +102,8 @@
 			children = (
 				EB92838C1C6E1C4D006385B9 /* ViewController.swift */,
 				EB771B061C6F1DAB00B0EBEF /* PokemonDetailVC.swift */,
+				EB92A8B11C71ACEA00691E14 /* BioContainerViewController.swift */,
+				EB92A8B31C71ACF500691E14 /* MovesContainerViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -287,6 +293,8 @@
 				EB771B071C6F1DAB00B0EBEF /* PokemonDetailVC.swift in Sources */,
 				EB72B7451C6F533800F703CF /* Constants.swift in Sources */,
 				EB24777F1C6E255B00FA9596 /* Pokemon.swift in Sources */,
+				EB92A8B21C71ACEA00691E14 /* BioContainerViewController.swift in Sources */,
+				EB92A8B41C71ACF500691E14 /* MovesContainerViewController.swift in Sources */,
 				EB771AFF1C6EED6700B0EBEF /* csv.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
