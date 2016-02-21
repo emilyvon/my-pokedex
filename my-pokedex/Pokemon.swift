@@ -26,7 +26,8 @@ class Pokemon {
     private var _nextEvolutiionId: String!
     private var _nextEvolutionLvl: String!
     
-    
+    var moveLearnTypes = [String]()
+    var moveNames = [String]()
     
     // name is guaranteed to have a value because we have initialized it
     var name: String {
@@ -118,12 +119,9 @@ class Pokemon {
     func downloadPokemonDetails(completed: DownloadComplete) {
         
         let url = NSURL(string: _pokemonUrl)!
-        
+
         // async: need to wait for this to download
         Alamofire.request(.GET, url).responseJSON { (response: Response<AnyObject, NSError>) -> Void in
-            
-             print("pokemon=====")
-             print(response.result.value)
             
             if let dict = response.result.value as? Dictionary<String, AnyObject> {
                 if let weight = dict["weight"] as? String {
@@ -137,12 +135,6 @@ class Pokemon {
                 if let defense = dict["defense"] as? Int {
                     self._defense = "\(defense)"
                 }
-                // print("==weight==")
-                // print(self._weight)
-                // print(self._height)
-                // print(self._attack)
-                // print(self._defense)
-                // print("==defense==")
                 
                 if let types = dict["types"] as? [Dictionary<String, String>] where types.count > 0 {
                     // print(types.debugDescription)
@@ -168,16 +160,12 @@ class Pokemon {
                     self._type = ""
                 }
                 
-                print(self._type)
-                
                 // DESCRIPTIONS
                 // get the first description from descriptions
                 if let descArr = dict["descriptions"] as? [Dictionary<String,String>] where descArr.count > 0 {
                     if let url = descArr[0]["resource_uri"] {
                         let nsurl = NSURL(string: "\(URL_BASE)\(url)")!
                         Alamofire.request(.GET, nsurl).responseJSON(completionHandler: { (response: Response<AnyObject, NSError>) -> Void in
-                            // print("description=====")
-                            // print(response.result.value)
                             
                             // get the description data
                             if let descDict = response.result.value as? Dictionary<String,AnyObject> {
@@ -222,25 +210,23 @@ class Pokemon {
                                 } else {
                                     self._nextEvolutionLvl = ""
                                 }
-                                // print(self._nextEvolutiionId)
-                                // print(self._nextEvolutionTxt)
-                                // print(self._nextEvolutionLvl)
-                                
                             }
                         }
-                        
                     }
                 }
                 
-                // MOVES
-                if let moves = dict["moves"] as? [Dictionary<String, AnyObject>] where moves.count > 0 {
-                    
+                // get moves learn_type and name
+                if let movesArr = dict["moves"] as? [Dictionary<String, AnyObject>] where movesArr.count > 0 {
+                    for var x = 0; x < movesArr.count; x++ {
+                        if let moveType = movesArr[x]["learn_type"] {
+                            self.moveLearnTypes.append(moveType as! String)
+                        }
+                        if let moveName = movesArr[x]["name"] {
+                            self.moveNames.append(moveName as! String)
+                        }
+                    }
                 }
-                
-            
-            
             } // end pokemon result
         } // end pokemon request
-        
     }
 }

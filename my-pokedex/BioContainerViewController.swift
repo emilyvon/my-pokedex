@@ -12,8 +12,6 @@ class BioContainerViewController: UIViewController {
 
     var passedData: Pokemon!
 
-    
-
     @IBOutlet weak var mainImg: UIImageView!
     @IBOutlet weak var descriptionLab: UILabel!
     @IBOutlet weak var typeLbl: UILabel!

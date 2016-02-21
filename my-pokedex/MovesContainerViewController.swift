@@ -8,32 +8,40 @@
 
 import UIKit
 
-class MovesContainerViewController: UIViewController {
-
+class MovesContainerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
     var passedData: Pokemon!
+   
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
-        print("moves view loaded!")
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        passedData.downloadPokemonDetails { () -> () in
+            print(self.passedData.moveLearnTypes)
+            self.tableView.dataSource = self
+            self.tableView.delegate = self
+            self.tableView.reloadData()
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCellWithIdentifier("MoveCell") as? MoveCell {
+            let type = passedData.moveLearnTypes[indexPath.row]
+            let name = passedData.moveNames[indexPath.row]
+            cell.configureCell(type, typeStr: name)
+            return cell
+        } else {
+            return MoveCell()
+        }
     }
-    */
-
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return passedData.moveLearnTypes.count / 2
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
 }
